@@ -86,7 +86,7 @@ class LocalFileSystem {
    * return an error.
    */
   int create(int parentInodeNumber, int type, std::string name);
-
+  
   /**
    * Write the contents of a file.
    *
