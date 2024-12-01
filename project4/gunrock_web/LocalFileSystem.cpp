@@ -162,7 +162,7 @@ int LocalFileSystem::lookup(int parentInodeNumber, string name) {
 
   delete[] bitMap;
 
-  if(isAlocated){
+  if(!isAlocated){
     return -ENOTALLOCATED;
   }
 
@@ -249,7 +249,7 @@ int LocalFileSystem::stat(int inodeNumber, inode_t *inode) {
 
   delete[] bitMap;
 
-  if(isAlocated){
+  if(!isAlocated){
     return -ENOTALLOCATED;
   }
 
@@ -288,7 +288,7 @@ int LocalFileSystem::read(int inodeNumber, void *buffer, int size) {
 
   delete[] bitMap;
 
-  if(isAlocated){
+  if(!isAlocated){
     return -ENOTALLOCATED;
   }
 

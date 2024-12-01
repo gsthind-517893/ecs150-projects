@@ -34,21 +34,23 @@ int main(int argc, char *argv[]) {
   std::cout << "Inode bitmap" << std::endl;
   int inodeBitSize = super.inode_bitmap_len * UFS_BLOCK_SIZE;
   unsigned char* inodeBitmap = new unsigned char[inodeBitSize];
+
   fileSystem->readInodeBitmap(&super,inodeBitmap);
   for(int i = 0; i < inodeBitSize;i++){
     cout << static_cast<unsigned int>(inodeBitmap[i]) << " ";
   }
-  cout << endl << endl;
+  cout << endl;
   delete[] inodeBitmap;
 
   std::cout << "Data bitmap" << std::endl;
   int dataSize = super.data_bitmap_len * UFS_BLOCK_SIZE;
   unsigned char* dataBitmap = new unsigned char[dataSize];
   fileSystem->readDataBitmap(&super,dataBitmap);
+
   for(int i = 0; i < dataSize; i++){
     std::cout << static_cast<unsigned int>(dataBitmap[i]) << " ";
   }
-  std::cout << std::endl;
+  cout << endl;
   delete[] dataBitmap;
   
   return 0;

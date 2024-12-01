@@ -72,6 +72,7 @@ int main(int argc, char *argv[]) {
     delete disk;
     return 1;
   }
+  
 
   vector<dir_ent_t> entries;
   char* buff = new char[inode.size];
@@ -85,9 +86,7 @@ int main(int argc, char *argv[]) {
   dir_ent_t* dirEntries = reinterpret_cast<dir_ent_t*>(buff);
   for (int i = 0; i < numEntries; ++i) {
     std::string entryName(dirEntries[i].name);
-    if (entryName != "." && entryName != "..") {
-      entries.push_back(dirEntries[i]);
-    }
+    entries.push_back(dirEntries[i]);
   } 
 
   delete[] buff;
@@ -99,11 +98,7 @@ int main(int argc, char *argv[]) {
   for (const auto& entry : entries) {
     inode_t entryInode;
     fileSystem->stat(entry.inum, &entryInode);
-    if (entryInode.type == UFS_DIRECTORY) {
-        std::cout << entry.inum << "\t" << entry.name << "/" << std::endl;
-    } else {
-        std::cout << entry.inum << "\t" << entry.name << std::endl;
-    }
+    std::cout << entry.inum << "\t" << entry.name << std::endl;
   }
   return 0;
 }
